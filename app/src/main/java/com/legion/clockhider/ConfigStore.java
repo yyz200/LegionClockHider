@@ -34,10 +34,10 @@ public final class ConfigStore {
     public static final String CONFIG_FILE =
             "/data/adb/lspd/modules/0/" + MODULE_PACKAGE + "/config.properties";
 
-    /** 隐藏方式：整体隐藏时钟容器（最可靠，推荐）。 */
-    public static final int MODE_WHOLE = 0;
-    /** 隐藏方式：逐项隐藏（时钟 / 日期 / 星期 分别开关）。 */
+    /** 隐藏方式：逐项隐藏 —— 按内容识别时钟/日期/星期，真机实测有效，默认值。 */
     public static final int MODE_ITEM = 1;
+    /** 隐藏方式：额外把时钟容器整体设为 GONE（逐项模式效果不理想时可试）。 */
+    public static final int MODE_WHOLE = 0;
 
     /** 隐藏手段：View.GONE（不占位）。 */
     public static final int VIS_GONE = 0;
@@ -69,7 +69,7 @@ public final class ConfigStore {
 
     private static volatile boolean sInited = false;
     private static volatile boolean sEnabled = false;
-    private static volatile int sMode = MODE_WHOLE;
+    private static volatile int sMode = MODE_ITEM;
     private static volatile boolean sClock = true;
     private static volatile boolean sDate = true;
     private static volatile boolean sWeekday = true;
@@ -250,7 +250,7 @@ public final class ConfigStore {
                 }
                 if (!p.containsKey(KEY_ENABLED)) continue;
                 sEnabled = "1".equals(p.getProperty(KEY_ENABLED, "0"));
-                sMode = clampMode(parseInt(p.getProperty(KEY_MODE, "0"), MODE_WHOLE));
+                sMode = clampMode(parseInt(p.getProperty(KEY_MODE, "1"), MODE_ITEM));
                 sClock = "1".equals(p.getProperty(KEY_CLOCK, "1"));
                 sDate = "1".equals(p.getProperty(KEY_DATE, "1"));
                 sWeekday = "1".equals(p.getProperty(KEY_WEEKDAY, "1"));
@@ -272,7 +272,7 @@ public final class ConfigStore {
 
     private static void readFrom(SharedPreferences sp) {
         sEnabled = sp.getBoolean(KEY_ENABLED, false);
-        sMode = clampMode(sp.getInt(KEY_MODE, MODE_WHOLE));
+        sMode = clampMode(sp.getInt(KEY_MODE, MODE_ITEM));
         sClock = sp.getBoolean(KEY_CLOCK, true);
         sDate = sp.getBoolean(KEY_DATE, true);
         sWeekday = sp.getBoolean(KEY_WEEKDAY, true);
@@ -287,7 +287,7 @@ public final class ConfigStore {
 
     private static void readFrom(Bundle b) {
         sEnabled = b.getBoolean(KEY_ENABLED, false);
-        sMode = clampMode(b.getInt(KEY_MODE, MODE_WHOLE));
+        sMode = clampMode(b.getInt(KEY_MODE, MODE_ITEM));
         sClock = b.getBoolean(KEY_CLOCK, true);
         sDate = b.getBoolean(KEY_DATE, true);
         sWeekday = b.getBoolean(KEY_WEEKDAY, true);
@@ -394,7 +394,7 @@ public final class ConfigStore {
     }
 
     private static int clampMode(int v) {
-        return (v == MODE_ITEM) ? MODE_ITEM : MODE_WHOLE;
+        return (v == MODE_WHOLE) ? MODE_WHOLE : MODE_ITEM;
     }
 
     private static int clampVis(int v) {

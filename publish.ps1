@@ -30,7 +30,7 @@ param(
     [string]$UserEmail = "",
     [ValidateSet("public", "private")][string]$Visibility = "public",
     [string]$Description = "Hide the ZUXOS lockscreen clock / date / weekday (Lenovo Legion Y700 Gen5) - LSPosed module. AI-generated.",
-    [string]$Version = "1.0.0",
+    [string]$Version = "1.0.1",
     [switch]$SkipCommit,
     [switch]$SkipRelease,
     [switch]$NoInteractiveAuth
@@ -283,7 +283,11 @@ Info "pushed"
 
 # ---------- 8. release + APK asset ----------
 if (-not $SkipRelease) {
-    $apks = @(Get-ChildItem (Join-Path $repo "dist") -Filter *.apk -ErrorAction SilentlyContinue)
+    $allApks = @(Get-ChildItem (Join-Path $repo "dist") -Filter *.apk -ErrorAction SilentlyContinue)
+    # only attach the APK(s) of THIS version: dist/ keeps older APKs for history,
+    # and they must not leak into a new release.
+    $apks = @($allApks | Where-Object { $_.Name -like "*v$Version*" })
+    if ($apks.Count -eq 0) { $apks = $allApks }
     if ($apks.Count -eq 0) {
         Warn "no APK found in dist/ - skipping release"
     } else {

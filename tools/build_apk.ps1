@@ -21,8 +21,8 @@ $jdk    = "$tools\jdk17"
 $build  = "$root\build"
 $dist   = "$root\dist"
 $appId  = "com.legion.clockhider"
-$verCode = 1
-$verName = "1.0.0"
+$verCode = 2
+$verName = "1.0.1"
 
 $apiJar        = "$tools\downloads\api-82.jar"
 $apiModernJar  = "$tools\downloads\aar-ext\classes.jar"

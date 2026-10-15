@@ -123,15 +123,17 @@ public final class ViewRules {
         int vis = (cfg.visibility == ConfigStore.VIS_INVISIBLE)
                 ? View.INVISIBLE : View.GONE;
 
+        // 真机反馈（Y700 五代 / ZUXOS 2.0.11.043）：只隐藏 AnimatableClockViewWithDate 容器时
+        // 锁屏时钟并没有消失，而「逐项隐藏」有效 —— 真正渲染时钟/日期的可能是子控件或同名兄弟控件。
+        // 因此这里**不能**隐藏容器后就返回：整体模式改为"容器也隐藏 + 继续按内容处理子树"。
+        int touched = 0;
         if (cfg.mode == ConfigStore.MODE_WHOLE && wholesaleAllow) {
-            boolean changed = setVis(root, vis);
-            return changed ? 1 : 0;
+            if (setVis(root, vis)) touched++;
         }
 
         List<View> views = collect(root, 80);
         boolean includeRoot = !(root instanceof ViewGroup)
                 || ((ViewGroup) root).getChildCount() == 0;
-        int touched = 0;
         for (View v : views) {
             if (v == root && !includeRoot) continue;
             int kind = classify(v);

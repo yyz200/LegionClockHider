@@ -77,11 +77,12 @@ public class SettingsActivity extends Activity {
         mStatusPill = null;
         switchRow("总开关", "关闭时所有 Hook 会被卸载，锁屏时钟恢复原样", ConfigStore.KEY_ENABLED, false);
 
-        card("隐藏方式", "推荐「整体隐藏」：直接把锁屏时钟容器隐藏，最可靠；"
-                + "「逐项隐藏」可分别处理时钟/日期/星期（同一行的日期+星期能只删星期保留日期）");
-        segment(new String[]{"整体隐藏（推荐）", "逐项隐藏"}, new int[]{
-                ConfigStore.MODE_WHOLE, ConfigStore.MODE_ITEM
-        }, ConfigStore.KEY_MODE, ConfigStore.MODE_WHOLE, null);
+        card("隐藏方式", "「逐项隐藏」（推荐，Y700 五代 / ZUXOS 2.0.11.043 实测有效）："
+                + "按内容识别时钟/日期/星期分别隐藏，同一行的日期+星期还能只删星期保留日期；"
+                + "「整体隐藏」会额外把时钟容器一起设为 GONE，逐项模式效果不理想时可试");
+        segment(new String[]{"逐项隐藏（推荐）", "整体隐藏"}, new int[]{
+                ConfigStore.MODE_ITEM, ConfigStore.MODE_WHOLE
+        }, ConfigStore.KEY_MODE, ConfigStore.MODE_ITEM, null);
 
         switchRow("隐藏时钟", "锁屏大时钟（时:分）", ConfigStore.KEY_CLOCK, true);
         switchRow("隐藏日期", "如「9月12日」", ConfigStore.KEY_DATE, true);

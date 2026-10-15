@@ -36,7 +36,7 @@ public class PrefsProvider extends ContentProvider {
             MatrixCursor mc = new MatrixCursor(COLUMNS);
             Bundle b = new Bundle();
             b.putBoolean(ConfigStore.KEY_ENABLED, sp.getBoolean(ConfigStore.KEY_ENABLED, false));
-            b.putInt(ConfigStore.KEY_MODE, sp.getInt(ConfigStore.KEY_MODE, ConfigStore.MODE_WHOLE));
+            b.putInt(ConfigStore.KEY_MODE, sp.getInt(ConfigStore.KEY_MODE, ConfigStore.MODE_ITEM));
             b.putBoolean(ConfigStore.KEY_CLOCK, sp.getBoolean(ConfigStore.KEY_CLOCK, true));
             b.putBoolean(ConfigStore.KEY_DATE, sp.getBoolean(ConfigStore.KEY_DATE, true));
             b.putBoolean(ConfigStore.KEY_WEEKDAY, sp.getBoolean(ConfigStore.KEY_WEEKDAY, true));

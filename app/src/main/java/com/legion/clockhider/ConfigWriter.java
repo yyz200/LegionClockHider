@@ -35,7 +35,7 @@ public final class ConfigWriter {
         extra = extra.replace('\n', ',').replace('\r', ' ').trim();
 
         String text = "enabled=" + b(prefs.getBoolean(ConfigStore.KEY_ENABLED, false))
-                + "\nhide_mode=" + prefs.getInt(ConfigStore.KEY_MODE, ConfigStore.MODE_WHOLE)
+                + "\nhide_mode=" + prefs.getInt(ConfigStore.KEY_MODE, ConfigStore.MODE_ITEM)
                 + "\nhide_clock=" + b(prefs.getBoolean(ConfigStore.KEY_CLOCK, true))
                 + "\nhide_date=" + b(prefs.getBoolean(ConfigStore.KEY_DATE, true))
                 + "\nhide_weekday=" + b(prefs.getBoolean(ConfigStore.KEY_WEEKDAY, true))

@@ -43,7 +43,7 @@ public class App extends Application {
             if (v >= 1) return;
             prefs.edit()
                     .putBoolean(ConfigStore.KEY_ENABLED, false)
-                    .putInt(ConfigStore.KEY_MODE, ConfigStore.MODE_WHOLE)
+                    .putInt(ConfigStore.KEY_MODE, ConfigStore.MODE_ITEM)
                     .putBoolean(ConfigStore.KEY_CLOCK, true)
                     .putBoolean(ConfigStore.KEY_DATE, true)
                     .putBoolean(ConfigStore.KEY_WEEKDAY, true)
