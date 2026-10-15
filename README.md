@@ -1,5 +1,8 @@
 # 锁屏时钟隐藏 · LegionClockHider
 
+> **仓库**：[github.com/yyz200/LegionClockHider](https://github.com/yyz200/LegionClockHider)
+> · **下载**：[Releases](https://github.com/yyz200/LegionClockHider/releases/latest)（已签名 APK，直接安装）
+
 > ## ⚠️ 本项目由 AI 编写，且**尚未在真机上验证**
 >
 > 代码、构建脚本与文档全部由 AI 助手（DeepSeek Harness）生成。人类参与者只提供了需求
