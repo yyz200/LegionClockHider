@@ -266,10 +266,16 @@ Info ("remote origin -> " + $cleanUrl)
 $parts = $cleanUrl -replace "^https://", ""
 $authUrl = "https://" + $login + ":" + $Token + "@" + $parts
 Info "pushing (token used in memory only)"
-& $git push $authUrl "HEAD:refs/heads/main" --force
-$ok = ($LASTEXITCODE -eq 0)
+# GitHub is often flaky from mainland China without a proxy: retry the push a few times.
+$pushed = $false
+foreach ($attempt in 1..5) {
+    & $git push $authUrl "HEAD:refs/heads/main" --force
+    if ($LASTEXITCODE -eq 0) { $pushed = $true; break }
+    Warn ("push attempt " + $attempt + " failed - retrying in a few seconds ...")
+    Start-Sleep -Seconds (3 * $attempt)
+}
 & $git remote set-url origin $cleanUrl
-if (-not $ok) { Fail "push failed - check the token scope and repository URL." }
+if (-not $pushed) { Fail "push failed after 5 attempts - check the token scope, the repository URL and your network/proxy." }
 Info "pushed"
 
 & $git fetch origin main 2>&1 | Out-Null
