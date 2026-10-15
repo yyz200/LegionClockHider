@@ -1,0 +1,20 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // 传统 Xposed API（de.robv.android.xposed:api:82）只发布在 JCenter（已关闭）及其镜像，
+        // 用阿里云 JCenter 镜像获取；libxposed 101+（Maven Central）只含新 API。
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    }
+}
+
+rootProject.name = "LegionClockHider"
+include ':app'

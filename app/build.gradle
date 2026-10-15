@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.legion.clockhider'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.legion.clockhider"
+        minSdk 27
+        targetSdk 36
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+// 说明：本工程不依赖任何远程 AAR。
+//  - 传统 Xposed API（api-82.jar）与现代 libxposed API/service 均以本地 jar 形式提供
+//    （见 tools/build_apk.ps1，从 tools/downloads/ 读取），所以不打网络也能构建；
+//  - 因此用 tools/build_apk.ps1（aapt2 + javac + d8 + zipalign + apksigner）即可出包。
+dependencies {
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">锁屏时钟隐藏</string>
+    <string name="module_description">隐藏 ZUXOS 锁屏界面的时钟 / 日期 / 星期（联想拯救者 Y700 五代 · ZUXOS 2.0.11.043）</string>
+    <string name="header_subtitle">ZUXOS 锁屏净屏 · 时钟 / 日期 / 星期</string>
+    <string name="version_footer">LegionClockHider v1.0.0 · 适配 ZUXOS 2.x（Android 16）</string>
+</resources>

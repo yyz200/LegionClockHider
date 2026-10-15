@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 图标：一个被斜线划掉的时钟（表示"隐藏时钟"） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#6C8CFF"
+        android:pathData="M54,30m-19,0a19,19 0 1,0 38,0a19,19 0 1,0 -38,0" />
+    <path
+        android:fillColor="#0E1015"
+        android:pathData="M54,30m-14,0a14,14 0 1,0 28,0a14,14 0 1,0 -28,0" />
+    <path
+        android:fillColor="#6C8CFF"
+        android:pathData="M52.5,19h3v12h-3z" />
+    <path
+        android:fillColor="#6C8CFF"
+        android:pathData="M54,28.5h9v3h-9z" />
+    <path
+        android:strokeColor="#FF9BA6"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M38,14L70,46" />
+    <path
+        android:fillColor="#9AA3B2"
+        android:pathData="M30,62h48v3.5h-48z" />
+    <path
+        android:fillColor="#6C7486"
+        android:pathData="M36,71h36v3h-36z" />
+</vector>

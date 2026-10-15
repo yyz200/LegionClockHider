@@ -1,0 +1,6 @@
+// 锁屏时钟隐藏 · LegionClockHider —— LSPosed 模块（联想拯救者 Y700 五代 / ZUXOS 2.x）
+// 目标设备：Legion Y700 (5th gen) / ZUXOS 2.0.11.043 / Android 16 (API 36)
+// 构建要求：JDK 17+、Gradle 8.11.1+（另附免 Gradle 构建脚本 tools/build_apk.ps1）
+plugins {
+    id 'com.android.application' version '8.9.2' apply false
+}
